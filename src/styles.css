@@ -1,4 +1,124 @@
-/* You can add global styles to this file, and also import other style files */
-
-html, body { height: 100%; }
+html, body { min-height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.ocean-login {
+	--ice: #a9e2f7;
+	position: relative; display: grid; min-height: 100svh; place-items: center; overflow: hidden; padding: 36px; color: #fff;
+	background: radial-gradient(ellipse at 15% 15%, #27659661, transparent 35%), linear-gradient(145deg, #06172f, #0a2547 48%, #123c61);
+	isolation: isolate;
+}
+
+.ocean-login::before, .ocean-login::after { position: absolute; z-index: -1; content: ''; pointer-events: none; }
+.ocean-login::before {
+	inset: 0; background: repeating-radial-gradient(ellipse at 82% 110%, transparent 0 52px, #aae3fa1a 53px 54px, transparent 55px 82px);
+	mask-image: linear-gradient(180deg, transparent 5%, #000 90%); animation: current-drift 28s linear infinite alternate;
+}
+.ocean-login::after {
+	inset: auto -10% -24%; height: 53%; border-radius: 50% 50% 0 0 / 24% 24% 0 0;
+	background: linear-gradient(#2e7aac33, #124c7a75); box-shadow: inset 0 18px 48px #ace5fa17;
+	transform: rotate(-3deg); animation: swell 9s ease-in-out infinite alternate;
+}
+
+.ocean-layout {
+	position: relative; display: grid; width: min(100%, 1120px); min-height: min(720px, calc(100svh - 72px));
+	grid-template-columns: minmax(0, 1fr) minmax(390px, .82fr); overflow: hidden;
+	border: 1px solid #cfeeff33; border-radius: 12px; background: #081e3857; box-shadow: 0 28px 90px #00081857;
+	animation: rise-in 850ms both;
+}
+.welcome-column { position: relative; display: flex; min-height: 100%; flex-direction: column; overflow: hidden; padding: 38px clamp(34px, 5vw, 68px) 34px; isolation: isolate; }
+.welcome-column::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(130deg, #09234057, #0a30522e); content: ''; }
+.brand-link { display: inline-flex; width: fit-content; align-items: center; gap: 12px; color: #fff; font: 700 11px 'Avenir Next', 'Trebuchet MS', sans-serif; letter-spacing: 1.6px; text-decoration: none; }
+.brand-mark { display: grid; width: 28px; height: 28px; grid-template: repeat(2, 1fr) / repeat(2, 1fr); gap: 3px; transform: rotate(-8deg); }
+.brand-mark i { border-radius: 1px 5px; background: var(--ice); }
+.brand-mark i:nth-child(2) { opacity: .55; }
+.brand-mark i:nth-child(3) { opacity: .72; }
+.welcome-copy { position: relative; z-index: 2; max-width: 470px; margin: auto 0; padding: 64px 0 40px; animation: rise-in 800ms 120ms both; }
+.welcome-kicker, .form-kicker { margin: 0; font: 700 9px 'Avenir Next', 'Trebuchet MS', sans-serif; letter-spacing: 1.6px; text-transform: uppercase; }
+.welcome-kicker { display: flex; align-items: center; gap: 10px; color: var(--ice); }
+.kicker-dot { width: 6px; height: 6px; border-radius: 50%; background: #9ee6f1; box-shadow: 0 0 15px #9ee6f1b3; }
+.welcome-copy h1 { margin: 25px 0 0; font: 400 clamp(52px, 6vw, 76px)/.98 Georgia, 'Times New Roman', serif; letter-spacing: 0; }
+.welcome-copy h1 em { color: var(--ice); font-weight: 400; }
+.welcome-description { max-width: 330px; margin: 20px 0 0; color: #ebf7ffb8; font: 13px/1.8 'Avenir Next', 'Trebuchet MS', sans-serif; }
+
+.water-art { position: absolute; z-index: 0; right: -8%; bottom: 9%; width: 82%; height: 34%; pointer-events: none; }
+.water-art::before, .water-art::after, .wave-band { position: absolute; inset: auto -15% -18%; height: 72%; border: 1px solid #b8e9ff2e; border-radius: 50% 50% 0 0 / 28% 28% 0 0; content: ''; }
+.water-art::before { background: linear-gradient(#6cc1e43b, #1453836b); box-shadow: inset 0 12px 36px #d0f5ff26; transform: rotate(-5deg); animation: water-roll 8s ease-in-out infinite alternate; }
+.water-art::after { inset: auto -4% -30%; border-color: #b5e6fa24; background: linear-gradient(#3388b32e, #0b37637a); transform: rotate(5deg); animation: water-roll 10s ease-in-out infinite alternate-reverse; }
+.wave-band { inset: auto -22% 18%; height: 30%; border-color: #cff1ff47; border-width: 1px 0 0; border-radius: 50%; transform: rotate(-6deg); animation: ripple 6s ease-in-out infinite; }
+.wave-band:nth-child(2) { bottom: 25%; animation-delay: -2s; }
+.wave-band:nth-child(3) { bottom: 32%; animation-delay: -4s; }
+.welcome-column:hover .water-art::before, .welcome-column:hover .water-art::after { animation-duration: 2.4s; }
+.welcome-column:hover .wave-band { animation-duration: 1.8s; }
+.welcome-footer { position: relative; z-index: 2; display: flex; align-items: center; gap: 12px; margin: 0; color: #e7f5ff8f; font: 700 8px 'Avenir Next', 'Trebuchet MS', sans-serif; letter-spacing: 1.4px; }
+.welcome-footer strong { color: var(--ice); }
+
+.auth-panel { position: relative; z-index: 1; display: grid; min-height: 100%; padding: 68px clamp(32px, 5vw, 72px); place-items: center; color: #102b50; background: #fbfdff; }
+.login-content { width: min(100%, 360px); animation: rise-in 760ms 200ms both; }
+.form-kicker { margin-bottom: 15px; color: #5384a4; }
+.form-heading h2 { margin: 0; font: 400 43px/1.1 Georgia, 'Times New Roman', serif; letter-spacing: 0; }
+.form-heading h2 span { color: #3d91bd; }
+.form-intro { margin: 12px 0 0; color: #718296; font: 12px/1.65 'Avenir Next', 'Trebuchet MS', sans-serif; }
+.login-form { display: grid; margin-top: 34px; }
+.login-form > label, .password-label-row label { margin-bottom: 8px; color: #263d5c; font: 700 10px 'Avenir Next', 'Trebuchet MS', sans-serif; }
+.login-form > input, .password-field input { width: 100%; height: 48px; padding: 0 14px; border: 1px solid #d6e1eb; border-radius: 4px; outline: none; color: #102b50; background: #fff; font: 12px 'Avenir Next', 'Trebuchet MS', sans-serif; transition: border-color 180ms, box-shadow 180ms, background 180ms; }
+.login-form > input::placeholder, .password-field input::placeholder { color: #9aa9b7; }
+.login-form > input:focus, .password-field input:focus { border-color: #4b9ac0; background: #f8fcff; box-shadow: 0 0 0 3px #4b9ac024; }
+.password-label-row { display: flex; align-items: center; justify-content: space-between; margin-top: 21px; }
+.password-field { position: relative; }
+.password-field input { padding-right: 66px; }
+.visibility-toggle { position: absolute; top: 50%; right: 12px; padding: 7px 0 7px 8px; border: 0; color: #3d83a7; background: transparent; cursor: pointer; font: 700 10px 'Avenir Next', 'Trebuchet MS', sans-serif; transform: translateY(-50%); }
+.visibility-toggle:focus-visible, .submit-button:focus-visible { outline: 3px solid #3d91bd66; outline-offset: 3px; }
+.remember-option { position: relative; display: flex; width: fit-content; align-items: center; gap: 9px; margin-top: 19px; color: #61768a; cursor: pointer; font: 10px 'Avenir Next', 'Trebuchet MS', sans-serif; }
+.remember-option input { position: absolute; width: 17px; height: 17px; margin: 0; opacity: 0; }
+.custom-checkbox { display: grid; width: 16px; height: 16px; flex: 0 0 16px; place-items: center; border: 1px solid #bdcbd7; border-radius: 3px; background: #fff; transition: background 150ms, border-color 150ms; }
+.remember-option input:checked + .custom-checkbox { border-color: #174d77; background: #174d77; }
+.remember-option input:checked + .custom-checkbox::after { width: 7px; height: 4px; border: solid #fff; border-width: 0 0 1px 1px; content: ''; transform: rotate(-45deg) translateY(-1px); }
+.remember-option input:focus-visible + .custom-checkbox { outline: 3px solid #3d91bd4d; outline-offset: 2px; }
+.submit-button { position: relative; isolation: isolate; display: flex; width: 100%; height: 50px; align-items: center; justify-content: space-between; margin-top: 25px; padding: 0 17px; overflow: hidden; border: 0; border-radius: 4px; color: #fff; background: #0d3158; cursor: pointer; font: 700 11px 'Avenir Next', 'Trebuchet MS', sans-serif; transition: background 180ms, transform 180ms; }
+.submit-button::before { position: absolute; z-index: -1; top: 100%; left: -30%; width: 160%; height: 220%; border-radius: 46% 54% 0 0; background: linear-gradient(#6fc7e3d1, #277eaef0); content: ''; }
+.submit-button:hover { background: #16466d; animation: button-shiver 420ms ease-in-out; }
+.submit-button:hover::before { animation: fill-tide 1.4s ease-in-out infinite; }
+.button-arrow { position: relative; width: 16px; height: 1px; background: #b6eaff; transition: width 180ms; }
+.button-arrow::after { position: absolute; top: -3px; right: 0; width: 6px; height: 6px; border-top: 1px solid #b6eaff; border-right: 1px solid #b6eaff; content: ''; transform: rotate(45deg); }
+.submit-button:hover .button-arrow { width: 23px; }
+.form-note { display: flex; align-items: center; gap: 9px; margin: 25px 0 0; color: #91a2b2; font: 9px 'Avenir Next', 'Trebuchet MS', sans-serif; }
+.note-wave { width: 18px; height: 7px; border-top: 1px solid #63aac9; border-radius: 50%; }
+.form-index { position: absolute; right: 28px; bottom: 24px; color: #a6b5c2; font: 8px 'Avenir Next', 'Trebuchet MS', sans-serif; letter-spacing: 1.3px; }
+
+@keyframes rise-in { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: none; } }
+@keyframes current-drift { to { background-position: 20% 80%; } }
+@keyframes swell { from { transform: translateX(-2%) rotate(-3deg); } to { transform: translateX(3%) rotate(2deg); } }
+@keyframes water-roll { from { transform: translateX(-3%) rotate(-5deg); } to { transform: translateX(4%) rotate(3deg); } }
+@keyframes ripple { 0%, 100% { opacity: .35; transform: translateX(-3%) scaleX(.95) rotate(-6deg); } 50% { opacity: .9; transform: translateX(3%) scaleX(1.06) rotate(-2deg); } }
+@keyframes fill-tide { 0% { top: 100%; transform: rotate(-6deg); } 55% { top: 5%; transform: rotate(4deg); } 100% { top: -72%; transform: rotate(12deg); } }
+@keyframes button-shiver { 0%, 100% { transform: translateY(-1px); } 25% { transform: translateY(-1px) rotate(-.65deg); } 75% { transform: translateY(-1px) rotate(.65deg); } }
+
+@media (max-width: 860px) {
+	.ocean-login { padding: 22px; }
+	.ocean-layout { min-height: min(700px, calc(100svh - 44px)); grid-template-columns: minmax(0, 1fr) minmax(350px, .9fr); }
+	.welcome-column { padding-right: 32px; padding-left: 32px; }
+	.welcome-copy h1 { font-size: 56px; }
+	.auth-panel { padding-right: 34px; padding-left: 34px; }
+}
+@media (max-width: 700px) {
+	.ocean-login { min-height: 100svh; padding: 0; place-items: stretch; }
+	.ocean-layout { width: 100%; min-height: 100svh; grid-template-columns: minmax(0, 1fr); align-content: start; border: 0; border-radius: 0; box-shadow: none; }
+	.welcome-column { min-height: 270px; padding: 24px 25px 30px; }
+	.welcome-copy { margin: auto 0 0; padding: 31px 0 0; }
+	.welcome-copy h1 { margin-top: 14px; font-size: 43px; }
+	.welcome-description { max-width: 310px; margin-top: 9px; font-size: 11px; }
+	.water-art { right: -16%; bottom: -2%; width: 78%; height: 49%; }
+	.welcome-footer { display: none; }
+	.auth-panel { min-height: 0; padding: 34px 25px 62px; place-items: start center; }
+	.login-content { width: min(100%, 420px); }
+	.form-heading h2 { font-size: 37px; }
+	.login-form { margin-top: 27px; }
+	.form-index { right: 24px; bottom: 20px; }
+}
+@media (max-width: 360px) {
+	.welcome-column { min-height: 245px; padding-right: 20px; padding-left: 20px; }
+	.auth-panel { padding-right: 20px; padding-left: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
